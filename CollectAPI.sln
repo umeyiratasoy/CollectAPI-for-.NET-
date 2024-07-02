@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectAPI", "CollectAPI\CollectAPI.csproj", "{CFB2A740-08FB-4426-922B-769D4790050B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFB2A740-08FB-4426-922B-769D4790050B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB2A740-08FB-4426-922B-769D4790050B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB2A740-08FB-4426-922B-769D4790050B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB2A740-08FB-4426-922B-769D4790050B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69A2F9F6-DC32-479D-A2BE-EAE249A3A3C7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,184 @@
+﻿@model CollectAPI.ViewModels.FinanceViewModel
+
+<h1>Borsa, Döviz, Altın Verileri</h1>
+<br />
+<br />
+<br />
+<br />
+@if (Model.ExchangeData.Success)
+{
+    <h2>Borsa İstanbul Verisi</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Aktif Döviz</th>
+                <th>Değişim Oranı</th>
+                <th>Minimum Değer</th>
+                <th>Maksimum Değer</th>
+                <th>Açılış Değeri</th>
+                <th>Kapanış Değeri</th>
+                <th>Zaman</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model.ExchangeData.Result)
+            {
+                <tr>
+                    <td>@result.Currentstr</td>
+                    <td>@result.Changeratestr</td>
+                    <td>@result.Minstr</td>
+                    <td>@result.Maxstr</td>
+                    <td>@result.Openingstr</td>
+                    <td>@result.Closingstr</td>
+                    <td>@result.Time</td>
+                    <td>@result.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.StockData.Success)
+{
+    <h2>Hisse Senedi Verileri</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hisse Kodu</th>
+                <th>Son Fiyat</th>
+                <th>Hacim</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stockResult in Model.StockData.Result)
+            {
+                <tr>
+                    <td>@stockResult.Code</td>
+                    <td>@stockResult.LastPriceStr</td>
+                    <td>@stockResult.HacimStr</td>
+                    <td>@stockResult.Text</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.LiveStockData.Success)
+{
+    <h2>Canlı Hisse Senedi Verileri</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Para Birimi</th>
+                <th>Hisse Adı</th>
+                <th>Son Fiyat</th>
+                <th>Fiyat (String)</th>
+                <th>Oran</th>
+                <th>Zaman</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var liveStockResult in Model.LiveStockData.Result)
+            {
+                <tr>
+                    <td>@liveStockResult.Currency</td>
+                    <td>@liveStockResult.Name</td>
+                    <td>@liveStockResult.Price</td>
+                    <td>@liveStockResult.PriceStr</td>
+                    <td>@liveStockResult.Rate</td>
+                    <td>@liveStockResult.Time</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model != null && Model.GoldData != null && Model.GoldData.Success)
+{
+    <h2>Altın Verileri</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Altınlar</th>
+                <th>Satın Alma Fiyatı</th>
+                <th>Satış Fiyatı</th>
+                <th>Güncelleme Zamanı</th>
+                <th>Tarih</th>
+                <th>Oran</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.GoldData.Result != null)
+            {
+                @foreach (var goldDataResult in Model.GoldData.Result)
+                {
+                    <tr>
+                        <td>@goldDataResult.Name</td>
+                        <td>@goldDataResult.BuyingStr</td>
+                        <td>@goldDataResult.SellingStr</td>
+                        <td>@goldDataResult.Time</td>
+                        <td>@goldDataResult.Date</td>
+                        <td>@goldDataResult.Rate</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">Veri bulunamadı.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Veriler yüklenemedi.</p>
+}
+
+
+@if (Model != null && Model.ForeignCurrencyData != null && Model.ForeignCurrencyData.Success)
+{
+    <h2>Döviz Kurları</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Döviz</th>
+                <th>Satın Alma Fiyatı</th>
+                <th>Satış Fiyatı</th>
+                <th>Güncelleme Zamanı</th>
+                <th>Tarih</th>
+                <th>Oran</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ForeignCurrencyData.Result != null)
+            {
+                @foreach (var currencyResult in Model.ForeignCurrencyData.Result)
+                {
+                    <tr>
+                        <td>@currencyResult.Name (@currencyResult.Code)</td>
+                        <td>@currencyResult.Buying</td>
+                        <td>@currencyResult.Selling</td>
+                        <td>@currencyResult.Time</td>
+                        <td>@currencyResult.DateTime</td>
+                        <td>@currencyResult.Rate</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">Veri bulunamadı.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Veriler yüklenemedi.</p>
+}
