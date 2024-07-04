@@ -1,0 +1,95 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CollectAPI.Models.IpLocation.IpLocationModel
+
+@{
+    ViewData["Title"] = "IP Konum Bulucu";
+}
+
+<h2>IP Konum Bulucu</h2>
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="ip">IP Adresi Girin:</label>
+        <input type="text" name="ip" class="form-control" id="ip" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Konumu Getir</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+@if (Model != null)
+{
+    @if (Model.Success && Model.Result != null)
+    {
+        <h3>IP Konum Sonucu</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Özellik</th>
+                        <th>Değer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IP</td>
+                        <td>@Model.Result.Ip</td>
+                    </tr>
+                    <tr>
+                        <td>Tip</td>
+                        <td>@Model.Result.Type</td>
+                    </tr>
+                    <tr>
+                        <td>Ülke</td>
+                        <td>@Model.Result.Country_Name</td>
+                    </tr>
+                    <tr>
+                        <td>Bölge Kodu</td>
+                        <td>@Model.Result.RegionCode</td>
+                    </tr>
+                    <tr>
+                        <td>Bölge Adı</td>
+                        <td>@Model.Result.RegionName</td>
+                    </tr>
+                    <tr>
+                        <td>Şehir</td>
+                        <td>@(string.IsNullOrWhiteSpace(Model.Result.City) ? "Doğru IP adresi giriniz." : Model.Result.City)</td>
+                    </tr>
+                    <tr>
+                        <td>Posta Kodu</td>
+                        <td>@(string.IsNullOrWhiteSpace(Model.Result.Zipcode) ? "Doğru IP adresi giriniz." : Model.Result.Zipcode)</td>
+                    </tr>
+                    <tr>
+                        <td>Enlem</td>
+                        <td>@(string.IsNullOrWhiteSpace(Model.Result.Latitude) ? "Doğru IP adresi giriniz." : Model.Result.Latitude)</td>
+                    </tr>
+                    <tr>
+                        <td>Boylam</td>
+                        <td>@(string.IsNullOrWhiteSpace(Model.Result.Longitude) ? "Doğru IP adresi giriniz." : Model.Result.Longitude)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>Veriler bulunamadı veya bir hata oluştu.</p>
+    }
+}
+
+
+

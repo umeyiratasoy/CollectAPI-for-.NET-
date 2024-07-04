@@ -19,6 +19,11 @@
 3. `appsettings.json` dosyasındaki (key) bilgisini yerleştirin || https://collectapi.com/tr/ => API Key'i buradan Alabilirsiniz.
 4.  Projeyi Ayağa kaldırın -- Start(F5)
 
+### Eklenen Özellikler
+1. Altın, Döviz ve Borsa Verileri
+2. IP Adresi ile Lokasyon Bilgisi
+
+
 
 
 
